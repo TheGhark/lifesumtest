@@ -7,7 +7,6 @@
         <attribute name="oid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="photoVersion" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="servingCategory" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Food" inverseName="category" inverseEntity="Food" syncable="YES"/>
         <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocalizedName" inverseName="category" inverseEntity="LocalizedName" syncable="YES"/>
     </entity>
     <entity name="Exercise" representedClassName=".Exercise" syncable="YES">
@@ -57,7 +56,6 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeOfMeasurement" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="unsaturatedFat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="foods" inverseEntity="Category" syncable="YES"/>
     </entity>
     <entity name="LocalizedName" representedClassName=".LocalizedName" syncable="YES">
         <attribute name="nameDA" optional="YES" attributeType="String" syncable="YES"/>
@@ -76,9 +74,9 @@
         <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="name" inverseEntity="Exercise" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Category" positionX="-54" positionY="144" width="128" height="150"/>
         <element name="Exercise" positionX="-63" positionY="-18" width="128" height="208"/>
-        <element name="Category" positionX="-54" positionY="144" width="128" height="163"/>
+        <element name="Food" positionX="-18" positionY="162" width="128" height="540"/>
         <element name="LocalizedName" positionX="-36" positionY="153" width="128" height="253"/>
-        <element name="Food" positionX="-18" positionY="162" width="128" height="553"/>
     </elements>
 </model>

@@ -21,6 +21,5 @@ extension Category {
     @NSManaged var photoVersion: NSNumber?
     @NSManaged var lastUpdated: NSNumber?
     @NSManaged var name: LocalizedName?
-    @NSManaged var foods: NSSet?
 
 }

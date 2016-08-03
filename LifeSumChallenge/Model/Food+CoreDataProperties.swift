@@ -47,6 +47,5 @@ extension Food {
     @NSManaged var defaultSize: NSNumber?
     @NSManaged var showOnlySameType: NSNumber?
     @NSManaged var unsaturatedFat: NSNumber?
-    @NSManaged var category: Category?
 
 }
