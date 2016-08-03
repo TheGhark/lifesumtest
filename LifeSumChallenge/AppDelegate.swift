@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         CoreDataManager.sharedManager.initialize()
+        CoreDataImporter.importJSONFiles()
+        
         return true
     }
 
@@ -39,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        CoreDataManager.sharedManager.saveContext()
+//        CoreDataManager.sharedManager.saveAll()
     }
 }
 

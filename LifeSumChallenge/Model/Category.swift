@@ -30,7 +30,6 @@ class Category: NSManagedObject {
         oid = dict["oid"] as? NSNumber
         photoVersion = dict["photo_version"] as? NSNumber
         lastUpdated = dict["lastUpdated"] as? NSNumber
-        name = LocalizedName().populate(dictionary: dict)
     }
     
     //MARK: - Public

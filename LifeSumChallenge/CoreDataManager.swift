@@ -42,16 +42,20 @@ class CoreDataManager {
         initializeContexts()
     }
     
-    func saveMainContext(block block: (() -> Void)?) {
+    func saveAll() {
+        save(context: backgroundContext)
+        save(context: mainContext)
+    }
+    func saveMainContext(block block: ((NSManagedObjectContext) -> Void)?) {
         mainContext.performBlock { [unowned self] in
-            block?()
+            block?(self.mainContext)
             self.save(context: self.mainContext)
         }
     }
     
-    func saveBackgroundContext(block block: (() -> Void)?) {
+    func saveBackgroundContext(block block: ((NSManagedObjectContext) -> Void)?) {
         backgroundContext.performBlock { [unowned self] in
-            block?()
+            block?(self.backgroundContext)
             self.save(context: self.backgroundContext)
         }
     }
@@ -87,7 +91,6 @@ class CoreDataManager {
         self.mainContext = mainContext
         
         let backgroundContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        backgroundContext.persistentStoreCoordinator = persistentStoreCoordinator
         backgroundContext.parentContext = mainContext
         self.backgroundContext = backgroundContext
     }

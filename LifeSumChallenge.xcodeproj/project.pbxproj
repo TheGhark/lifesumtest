@@ -23,6 +23,11 @@
 		9A751F231D514A0D0064B8C4 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A751F1F1D514A0D0064B8C4 /* Exercise+CoreDataProperties.swift */; };
 		9A751F241D514A0D0064B8C4 /* Food+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A751F201D514A0D0064B8C4 /* Food+CoreDataProperties.swift */; };
 		9A751F251D514A0D0064B8C4 /* LocalizedName+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A751F211D514A0D0064B8C4 /* LocalizedName+CoreDataProperties.swift */; };
+		9AE07B751D52803200F9BD14 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE07B741D52803200F9BD14 /* JSONLoader.swift */; };
+		9AE07B7B1D52809100F9BD14 /* categoriesStatic.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AE07B781D52809100F9BD14 /* categoriesStatic.json */; };
+		9AE07B7C1D52809100F9BD14 /* exercisesStatic.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AE07B791D52809100F9BD14 /* exercisesStatic.json */; };
+		9AE07B7D1D52809100F9BD14 /* foodStatic.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AE07B7A1D52809100F9BD14 /* foodStatic.json */; };
+		9AE07B7F1D52877000F9BD14 /* CoreDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE07B7E1D52877000F9BD14 /* CoreDataImporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 		9A751F1F1D514A0D0064B8C4 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9A751F201D514A0D0064B8C4 /* Food+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Food+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9A751F211D514A0D0064B8C4 /* LocalizedName+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocalizedName+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9AE07B741D52803200F9BD14 /* JSONLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
+		9AE07B781D52809100F9BD14 /* categoriesStatic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categoriesStatic.json; sourceTree = "<group>"; };
+		9AE07B791D52809100F9BD14 /* exercisesStatic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = exercisesStatic.json; sourceTree = "<group>"; };
+		9AE07B7A1D52809100F9BD14 /* foodStatic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodStatic.json; sourceTree = "<group>"; };
+		9AE07B7E1D52877000F9BD14 /* CoreDataImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataImporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,7 @@
 		9A751ECE1D5139100064B8C4 /* LifeSumChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				9AE07B771D52807A00F9BD14 /* JSON */,
 				9A751EF51D5141E10064B8C4 /* Model */,
 				9A751ECF1D5139100064B8C4 /* AppDelegate.swift */,
 				9A751EF21D513A5E0064B8C4 /* CoreDataManager.swift */,
@@ -106,6 +117,8 @@
 				9A751EDB1D5139110064B8C4 /* LaunchScreen.storyboard */,
 				9A751EDE1D5139110064B8C4 /* Info.plist */,
 				9A751ED61D5139110064B8C4 /* LifeSumChallenge.xcdatamodeld */,
+				9AE07B741D52803200F9BD14 /* JSONLoader.swift */,
+				9AE07B7E1D52877000F9BD14 /* CoreDataImporter.swift */,
 			);
 			path = LifeSumChallenge;
 			sourceTree = "<group>";
@@ -132,6 +145,16 @@
 				9A751F0C1D5149360064B8C4 /* LocalizedName.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9AE07B771D52807A00F9BD14 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				9AE07B781D52809100F9BD14 /* categoriesStatic.json */,
+				9AE07B791D52809100F9BD14 /* exercisesStatic.json */,
+				9AE07B7A1D52809100F9BD14 /* foodStatic.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +241,9 @@
 				9A751EDD1D5139110064B8C4 /* LaunchScreen.storyboard in Resources */,
 				9A751EDA1D5139110064B8C4 /* Assets.xcassets in Resources */,
 				9A751ED51D5139110064B8C4 /* Main.storyboard in Resources */,
+				9AE07B7C1D52809100F9BD14 /* exercisesStatic.json in Resources */,
+				9AE07B7B1D52809100F9BD14 /* categoriesStatic.json in Resources */,
+				9AE07B7D1D52809100F9BD14 /* foodStatic.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,12 +264,14 @@
 				9A751F251D514A0D0064B8C4 /* LocalizedName+CoreDataProperties.swift in Sources */,
 				9A751ED21D5139100064B8C4 /* ViewController.swift in Sources */,
 				9A751F221D514A0D0064B8C4 /* Category+CoreDataProperties.swift in Sources */,
+				9AE07B751D52803200F9BD14 /* JSONLoader.swift in Sources */,
 				9A751F0E1D5149360064B8C4 /* Category.swift in Sources */,
 				9A751ED81D5139110064B8C4 /* LifeSumChallenge.xcdatamodeld in Sources */,
 				9A751EF31D513A5E0064B8C4 /* CoreDataManager.swift in Sources */,
 				9A751F141D5149360064B8C4 /* LocalizedName.swift in Sources */,
 				9A751F121D5149360064B8C4 /* Food.swift in Sources */,
 				9A751F231D514A0D0064B8C4 /* Exercise+CoreDataProperties.swift in Sources */,
+				9AE07B7F1D52877000F9BD14 /* CoreDataImporter.swift in Sources */,
 				9A751F101D5149360064B8C4 /* Exercise.swift in Sources */,
 				9A751ED01D5139100064B8C4 /* AppDelegate.swift in Sources */,
 				9A751F241D514A0D0064B8C4 /* Food+CoreDataProperties.swift in Sources */,
@@ -442,6 +470,7 @@
 				9A751EEE1D5139110064B8C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A751EEF1D5139110064B8C4 /* Build configuration list for PBXNativeTarget "LifeSumChallengeTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +479,7 @@
 				9A751EF11D5139110064B8C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
