@@ -22,22 +22,10 @@ class CoreDataImporter {
         let exercises = loader.loadExercises()
         let food = loader.loadFood()
         
-        if let categories = categories {
-            CoreDataManager.sharedManager.saveBackgroundContext {
-                saveCategories(categories, context: $0)
-            }
-        }
-
-        if let exercises = exercises {
-            CoreDataManager.sharedManager.saveBackgroundContext {
-                saveExercises(exercises, context: $0)
-            }
-        }
-        
-        if let food = food {
-            CoreDataManager.sharedManager.saveBackgroundContext {
-                saveFood(food, context: $0)
-            }
+        CoreDataManager.sharedManager.saveBackgroundContext {
+            saveCategories(categories, context: $0)
+            saveExercises(exercises, context: $0)
+            saveFood(food, context: $0)
         }
     }
     
@@ -51,7 +39,9 @@ class CoreDataImporter {
     
     //MARK: - Private
     
-    private class func saveCategories(json: [[String: AnyObject]], context: NSManagedObjectContext) {
+    private class func saveCategories(json: [[String: AnyObject]]?, context: NSManagedObjectContext) {
+        guard let json = json else { return }
+        
         let categoryDescription = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
         let nameDescription = NSEntityDescription.entityForName("LocalizedName", inManagedObjectContext: context)
         
@@ -64,7 +54,8 @@ class CoreDataImporter {
         }
     }
     
-    private class func saveExercises(json: [[String: AnyObject]], context: NSManagedObjectContext) {
+    private class func saveExercises(json: [[String: AnyObject]]?, context: NSManagedObjectContext) {
+        guard let json = json else { return }
         let exerciseDescription = NSEntityDescription.entityForName("Exercise", inManagedObjectContext: context)
         let nameDescription = NSEntityDescription.entityForName("LocalizedName", inManagedObjectContext: context)
         
@@ -77,7 +68,8 @@ class CoreDataImporter {
         }
     }
     
-    private class func saveFood(json: [[String: AnyObject]], context: NSManagedObjectContext) {
+    private class func saveFood(json: [[String: AnyObject]]?, context: NSManagedObjectContext) {
+        guard let json = json else { return }
         let foodDescription = NSEntityDescription.entityForName("Food", inManagedObjectContext: context)
         
         if let foodDescription = foodDescription {

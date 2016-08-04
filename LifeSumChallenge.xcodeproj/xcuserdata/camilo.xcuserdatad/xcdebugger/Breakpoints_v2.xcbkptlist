@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LifeSumChallenge/CoreDataImporter.swift"
-            timestampString = "491948598.553407"
+            filePath = "LifeSumChallenge/CoreDataManager.swift"
+            timestampString = "492038008.434165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "localizedName(entity:context:dictionary:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "save(context:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

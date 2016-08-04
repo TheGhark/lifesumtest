@@ -1,25 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gG1-jY-mSx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Navigation Controller-->
+        <scene sceneID="zDX-zE-NKw">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="gG1-jY-mSx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="m9V-2f-NcY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="d4P-PJ-iAM" kind="relationship" relationship="rootViewController" id="vss-vr-BgU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="haG-Ex-4Gz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-407" y="420"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5a7-hM-yXf">
+            <objects>
+                <viewController id="d4P-PJ-iAM" customClass="ViewController" customModule="LifeSumChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="7ld-3g-iX5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jjf-ld-E6Q"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="pfi-Dn-uHp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eLQ-tJ-Rly">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="d4P-PJ-iAM" id="6Bb-Di-r4E"/>
+                                    <outlet property="delegate" destination="d4P-PJ-iAM" id="zXM-cR-bkz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eLQ-tJ-Rly" secondAttribute="trailing" id="VDe-MN-2Ya"/>
+                            <constraint firstItem="eLQ-tJ-Rly" firstAttribute="top" secondItem="pfi-Dn-uHp" secondAttribute="top" id="mdo-e1-aGd"/>
+                            <constraint firstItem="Jjf-ld-E6Q" firstAttribute="top" secondItem="eLQ-tJ-Rly" secondAttribute="bottom" id="nB3-IE-Q2T"/>
+                            <constraint firstItem="eLQ-tJ-Rly" firstAttribute="leading" secondItem="pfi-Dn-uHp" secondAttribute="leading" id="tsR-wb-VSK"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="M5N-0d-Mil">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="AsD-oZ-ho3">
+                            <rect key="frame" x="179" y="7" width="242" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Categories"/>
+                                <segment title="Exercises"/>
+                                <segment title="Food"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlValueChanged:" destination="d4P-PJ-iAM" eventType="valueChanged" id="zb3-Mm-nrt"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="AsD-oZ-ho3" id="iaz-Db-BUB"/>
+                        <outlet property="tableView" destination="eLQ-tJ-Rly" id="taY-7d-S87"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9WX-VA-1g0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="277" y="420"/>
         </scene>
     </scenes>
 </document>

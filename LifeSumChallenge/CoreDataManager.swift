@@ -21,8 +21,8 @@ class CoreDataManager {
     
     var managedObjectModel: NSManagedObjectModel!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator?
-    var mainContext: NSManagedObjectContext!
-    var backgroundContext: NSManagedObjectContext!
+    private(set) var mainContext: NSManagedObjectContext!
+    private(set) var backgroundContext: NSManagedObjectContext!
     
     //MARK: - Computed Properties
     
@@ -46,6 +46,7 @@ class CoreDataManager {
         save(context: backgroundContext)
         save(context: mainContext)
     }
+    
     func saveMainContext(block block: ((NSManagedObjectContext) -> Void)?) {
         mainContext.performBlock { [unowned self] in
             block?(self.mainContext)
@@ -102,7 +103,6 @@ class CoreDataManager {
             } catch {
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo), in context \(context)")
-                abort()
             }
         }
     }

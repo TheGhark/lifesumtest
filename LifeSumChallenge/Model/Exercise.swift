@@ -34,7 +34,6 @@ class Exercise: NSManagedObject {
         addedByUser = dict["addebyuser"] as? NSNumber
         title = dict["title"] as? String
         calories = dict["calories"] as? NSNumber
-        name = LocalizedName().populate(dictionary: dict)
     }
     
     //MARK: - Public

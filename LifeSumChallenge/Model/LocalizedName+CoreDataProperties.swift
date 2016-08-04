@@ -2,7 +2,7 @@
 //  LocalizedName+CoreDataProperties.swift
 //  LifeSumChallenge
 //
-//  Created by Camilo Rodriguez Gaviria on 2/8/16.
+//  Created by Camilo Rodriguez Gaviria on 4/8/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ extension LocalizedName {
 
     @NSManaged var nameDA: String?
     @NSManaged var nameDE: String?
+    @NSManaged var nameES: String?
     @NSManaged var nameFI: String?
     @NSManaged var nameFR: String?
     @NSManaged var nameIT: String?
@@ -25,7 +26,6 @@ extension LocalizedName {
     @NSManaged var namePT: String?
     @NSManaged var nameRU: String?
     @NSManaged var nameSV: String?
-    @NSManaged var nameES: String?
     @NSManaged var category: Category?
     @NSManaged var exercise: Exercise?
 
