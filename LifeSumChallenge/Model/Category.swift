@@ -32,6 +32,10 @@ class Category: NSManagedObject {
         lastUpdated = dict["lastUpdated"] as? NSNumber
     }
     
+    func contains(term: String) -> Bool {
+        return category?.lowercaseString.containsString(term.lowercaseString) ?? false
+    }
+    
     //MARK: - Public
     
     //MARK: - Private

@@ -19,51 +19,51 @@ class LocalizedName: NSManagedObject {
         var info = [String]()
         
         if let name = nameDA where !name.isEmpty {
-            info.append(name)
+            info.append("Danish: \(name)")
         }
         
         if let name = nameDE where !name.isEmpty {
-            info.append(name)
+            info.append("German: \(name)")
         }
         
         if let name = nameFI where !name.isEmpty {
-            info.append(name)
+            info.append("Finnish: \(name)")
         }
         
         if let name = nameFR where !name.isEmpty {
-            info.append(name)
+            info.append("French: \(name)")
         }
         
         if let name = nameIT where !name.isEmpty {
-            info.append(name)
+            info.append("Italian: \(name)")
         }
         
         if let name = nameNL where !name.isEmpty {
-            info.append(name)
+            info.append("Dutch: \(name)")
         }
         
         if let name = nameNO where !name.isEmpty {
-            info.append(name)
+            info.append("Norwegian: \(name)")
         }
         
         if let name = namePL where !name.isEmpty {
-            info.append(name)
+            info.append("Polish: \(name)")
         }
         
         if let name = namePT where !name.isEmpty {
-            info.append(name)
+            info.append("Portuguese: \(name)")
         }
         
         if let name = nameRU where !name.isEmpty {
-            info.append(name)
+            info.append("Russian: \(name)")
         }
         
         if let name = nameSV where !name.isEmpty {
-            info.append(name)
+            info.append("Slovenian: \(name)")
         }
         
         if let name = nameES where !name.isEmpty {
-            info.append(name)
+            info.append("Spanish: \(name)")
         }
         
         return info.isEmpty ? "" : info.joinWithSeparator("\n")

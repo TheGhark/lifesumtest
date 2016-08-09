@@ -11,7 +11,8 @@ import CoreData
 
 private let CellIdentifier = "CellIdentifier"
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+    
     //MARK: - Properties
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -20,6 +21,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var factory: FRCFactory!
+    private var searching = false
+    private var filtered = [AnyObject]()
     
     //MARK: - Computed Properties
     
@@ -49,12 +52,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("An error occured when fetching: \(error as NSError)")
         }
         
+        tableView.keyboardDismissMode = .OnDrag
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier)
     }
     
     //MARK: - Actions
     
     @IBAction func segmentedControlValueChanged(sender: UISegmentedControl) {
+        view.endEditing(true)
+        
         do {
             try controller.performFetch()
         } catch {
@@ -69,6 +75,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: - Public
     
     //MARK: - Private
+    
+    private func hideLoadingView() {
+        if !loadingView.hidden {
+            UIView.animateWithDuration(0.25, animations: {
+                self.loadingView.alpha = 0
+                }, completion: { _ in
+                    self.loadingView.hidden = true
+                    self.activityIndicator.stopAnimating()
+            })
+        }
+    }
+    
+    private func clearSearch() {
+        searching = false
+        filtered.removeAll()
+        tableView.reloadData()
+    }
     
     //MARK: - Overridden
     
@@ -89,6 +112,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        guard !searching else {
+            return 1
+        }
+        
         if let sections = controller.sections {
             return sections.count
         }
@@ -97,6 +124,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard !searching else {
+            return filtered.count
+        }
+        
         if let sections = controller.sections where !sections.isEmpty {
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
@@ -111,13 +142,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         switch segmentedControl.selectedSegmentIndex {
         case 1:
-            let exercise = controller.objectAtIndexPath(indexPath) as? Exercise
+            let exercise = searching ? filtered[indexPath.row] as? Exercise : controller.objectAtIndexPath(indexPath) as? Exercise
             text = exercise?.title
         case 2:
-            let food = controller.objectAtIndexPath(indexPath) as? Food
+            let food = searching ? filtered[indexPath.row] as? Food : controller.objectAtIndexPath(indexPath) as? Food
             text = food?.title
         default:
-            let category = controller.objectAtIndexPath(indexPath) as? Category
+            let category = searching ? filtered[indexPath.row] as? Category : controller.objectAtIndexPath(indexPath) as? Category
             text = category?.category
         }
         
@@ -193,14 +224,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
         
-        if !loadingView.hidden {
-            UIView.animateWithDuration(0.25, animations: { 
-                self.loadingView.alpha = 0
-                }, completion: { _ in
-                    self.loadingView.hidden = true
-                    self.activityIndicator.stopAnimating()
-            })
+        hideLoadingView()
+    }
+    
+    //MARK: - UISearchBarDelegate
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            clearSearch()
+            return
         }
+        
+        searching = true
+        let objects = controller.fetchedObjects
+        
+        if let objects = objects as? [Category] {
+            filtered = objects.filter { $0.contains(searchText) }
+        } else if let objects = objects as? [Exercise] {
+            filtered = objects.filter { $0.contains(searchText) }
+        } else if let objects = objects as? [Food] {
+            filtered = objects.filter { $0.contains(searchText) }
+        }
+        
+        tableView.reloadData()
     }
 }
 

@@ -33,19 +33,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="L8E-nB-i4z">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="THW-df-mf5"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="d4P-PJ-iAM" id="fnf-xA-2EF"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eLQ-tJ-Rly">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hVL-rf-IUy" customClass="ObjectCell" customModule="LifeSumChallenge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hVL-rf-IUy" id="FpS-Hc-Mib">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="d4P-PJ-iAM" id="6Bb-Di-r4E"/>
                                     <outlet property="delegate" destination="d4P-PJ-iAM" id="zXM-cR-bkz"/>
@@ -68,13 +68,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AmA-78-iuA" firstAttribute="leading" secondItem="pfi-Dn-uHp" secondAttribute="leading" id="4Sf-on-Gy5"/>
+                            <constraint firstItem="L8E-nB-i4z" firstAttribute="leading" secondItem="pfi-Dn-uHp" secondAttribute="leading" id="BFD-oX-ZlH"/>
+                            <constraint firstAttribute="trailing" secondItem="L8E-nB-i4z" secondAttribute="trailing" id="Hhp-1b-0YD"/>
                             <constraint firstAttribute="trailing" secondItem="AmA-78-iuA" secondAttribute="trailing" id="IJB-2E-5cG"/>
                             <constraint firstAttribute="trailing" secondItem="eLQ-tJ-Rly" secondAttribute="trailing" id="VDe-MN-2Ya"/>
-                            <constraint firstItem="eLQ-tJ-Rly" firstAttribute="top" secondItem="pfi-Dn-uHp" secondAttribute="top" id="mdo-e1-aGd"/>
                             <constraint firstItem="Jjf-ld-E6Q" firstAttribute="top" secondItem="eLQ-tJ-Rly" secondAttribute="bottom" id="nB3-IE-Q2T"/>
+                            <constraint firstItem="L8E-nB-i4z" firstAttribute="top" secondItem="7ld-3g-iX5" secondAttribute="bottom" id="okI-77-r4B"/>
                             <constraint firstItem="Jjf-ld-E6Q" firstAttribute="top" secondItem="AmA-78-iuA" secondAttribute="bottom" id="pff-mq-E9Z"/>
                             <constraint firstItem="AmA-78-iuA" firstAttribute="top" secondItem="7ld-3g-iX5" secondAttribute="bottom" id="tmh-Kp-TiN"/>
                             <constraint firstItem="eLQ-tJ-Rly" firstAttribute="leading" secondItem="pfi-Dn-uHp" secondAttribute="leading" id="tsR-wb-VSK"/>
+                            <constraint firstItem="eLQ-tJ-Rly" firstAttribute="top" secondItem="L8E-nB-i4z" secondAttribute="bottom" id="x2O-iy-ReG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M5N-0d-Mil">

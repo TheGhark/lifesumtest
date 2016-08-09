@@ -59,6 +59,10 @@ class Food: NSManagedObject {
         unsaturatedFat = dict["unsaturatedfat"] as? NSNumber
     }
     
+    func contains(term: String) -> Bool {
+        return title?.lowercaseString.containsString(term.lowercaseString) ?? false
+    }
+    
     //MARK: - Public
     
     //MARK: - Private

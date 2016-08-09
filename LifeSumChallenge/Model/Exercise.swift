@@ -36,6 +36,10 @@ class Exercise: NSManagedObject {
         calories = dict["calories"] as? NSNumber
     }
     
+    func contains(term: String) -> Bool {
+        return title?.lowercaseString.containsString(term.lowercaseString) ?? false
+    }
+    
     //MARK: - Public
     
     //MARK: - Private
