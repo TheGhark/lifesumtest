@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A46E4731D5A62F200855909 /* FRCFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46E4721D5A62F200855909 /* FRCFactory.swift */; };
 		9A751ED01D5139100064B8C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A751ECF1D5139100064B8C4 /* AppDelegate.swift */; };
 		9A751ED21D5139100064B8C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A751ED11D5139100064B8C4 /* ViewController.swift */; };
 		9A751ED51D5139110064B8C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A751ED31D5139110064B8C4 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A46E4721D5A62F200855909 /* FRCFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRCFactory.swift; sourceTree = "<group>"; };
 		9A751ECC1D5139100064B8C4 /* LifeSumChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeSumChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A751ECF1D5139100064B8C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A751ED11D5139100064B8C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				9A751ECF1D5139100064B8C4 /* AppDelegate.swift */,
 				9A751EF21D513A5E0064B8C4 /* CoreDataManager.swift */,
 				9A751ED11D5139100064B8C4 /* ViewController.swift */,
+				9A46E4721D5A62F200855909 /* FRCFactory.swift */,
 				9A751ED31D5139110064B8C4 /* Main.storyboard */,
 				9A751ED91D5139110064B8C4 /* Assets.xcassets */,
 				9A751EDB1D5139110064B8C4 /* LaunchScreen.storyboard */,
@@ -274,6 +277,7 @@
 				9AE07B7F1D52877000F9BD14 /* CoreDataImporter.swift in Sources */,
 				9A751F101D5149360064B8C4 /* Exercise.swift in Sources */,
 				9A751ED01D5139100064B8C4 /* AppDelegate.swift in Sources */,
+				9A46E4731D5A62F200855909 /* FRCFactory.swift in Sources */,
 				9A751F241D514A0D0064B8C4 /* Food+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,55 +19,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var categoriesFRC: NSFetchedResultsController = {
-        let request = NSFetchRequest(entityName: "Category")
-        request.fetchBatchSize = 20
-        request.propertiesToFetch = ["category"]
-        let sort = NSSortDescriptor(key: "category", ascending: true)
-        request.sortDescriptors = [sort]
-        let context = CoreDataManager.sharedManager.mainContext
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        
-        return controller
-    }()
-    
-    private lazy var exercisesFRC: NSFetchedResultsController = {
-        let request = NSFetchRequest(entityName: "Exercise")
-        request.fetchBatchSize = 20
-        request.propertiesToFetch = ["title"]
-        let sort = NSSortDescriptor(key: "title", ascending: true)
-        request.sortDescriptors = [sort]
-        let context = CoreDataManager.sharedManager.mainContext
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        
-        return controller
-    }()
-    
-    private lazy var foodFRC: NSFetchedResultsController = {
-        let request = NSFetchRequest(entityName: "Food")
-        request.fetchBatchSize = 20
-        request.propertiesToFetch = ["title"]
-        let sort = NSSortDescriptor(key: "title", ascending: true)
-        request.sortDescriptors = [sort]
-        let context = CoreDataManager.sharedManager.mainContext
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        
-        return controller
-    }()
+    private var factory: FRCFactory!
     
     //MARK: - Computed Properties
     
     private var controller: NSFetchedResultsController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return categoriesFRC
+            return factory.categoriesFetchedResultsController()
         case 1:
-            return exercisesFRC
+            return factory.exercisesFetchedResultsController()
         default:
-            return foodFRC
+            return factory.foodFetchedResultsController()
         }
     }
     
@@ -78,10 +41,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        factory = FRCFactory(delegate: self)
+        
         do {
-            try categoriesFRC.performFetch()
+            try controller.performFetch()
         } catch {
-            print("An error occured when fetching categories: \(error as NSError)")
+            print("An error occured when fetching: \(error as NSError)")
         }
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: CategoryCellIdentifier)
