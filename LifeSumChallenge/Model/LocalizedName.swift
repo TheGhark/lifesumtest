@@ -15,6 +15,60 @@ class LocalizedName: NSManagedObject {
     
     //MARK: - Computed Properties
     
+    override var description: String {
+        var info = [String]()
+        
+        if let name = nameDA where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameDE where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameFI where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameFR where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameIT where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameNL where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameNO where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = namePL where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = namePT where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameRU where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameSV where !name.isEmpty {
+            info.append(name)
+        }
+        
+        if let name = nameES where !name.isEmpty {
+            info.append(name)
+        }
+        
+        return info.isEmpty ? "" : info.joinWithSeparator("\n")
+    }
+    
     //MARK: - Class Methods
     
     //MARK: - Initialization

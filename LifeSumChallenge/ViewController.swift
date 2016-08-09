@@ -9,15 +9,15 @@
 import UIKit
 import CoreData
 
-private let CategoryCellIdentifier = "CategoryCellIdentifier"
-private let ExerciseCellIdentifier = "ExerciseCellIdentifier"
-private let FoodCellIdentifier = "FoodCellIdentifier"
+private let CellIdentifier = "CellIdentifier"
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     //MARK: - Properties
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var factory: FRCFactory!
     
@@ -49,9 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("An error occured when fetching: \(error as NSError)")
         }
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: CategoryCellIdentifier)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ExerciseCellIdentifier)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: FoodCellIdentifier)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier)
     }
     
     //MARK: - Actions
@@ -74,6 +72,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //MARK: - Overridden
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let indexPath = sender as? NSIndexPath, detailsVC = segue.destinationViewController as? DetailsViewController {
+            switch segmentedControl.selectedSegmentIndex {
+            case 1:
+                let exercise = controller.objectAtIndexPath(indexPath) as? Exercise
+                detailsVC.setup(title: exercise?.title, names: exercise?.name?.description)
+                
+            default:
+                let category = controller.objectAtIndexPath(indexPath) as? Category
+                detailsVC.setup(title: category?.category, names: category?.name?.description)
+            }
+        }
+    }
+    
     //MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -94,29 +106,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+        var text: String?
+        
         switch segmentedControl.selectedSegmentIndex {
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(ExerciseCellIdentifier, forIndexPath: indexPath)
             let exercise = controller.objectAtIndexPath(indexPath) as? Exercise
-            cell.textLabel?.text = exercise?.title
-            
-            return cell
+            text = exercise?.title
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier(FoodCellIdentifier, forIndexPath: indexPath)
             let food = controller.objectAtIndexPath(indexPath) as? Food
-            cell.textLabel?.text = food?.title
-            
-            return cell
+            text = food?.title
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier(CategoryCellIdentifier, forIndexPath: indexPath)
             let category = controller.objectAtIndexPath(indexPath) as? Category
-            cell.textLabel?.text = category?.category
-            
-            return cell
+            text = category?.category
         }
+        
+        cell.textLabel?.text = text
+        cell.selectionStyle = .None
+        
+        return cell
     }
     
     //MARK: - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        switch segmentedControl.selectedSegmentIndex {
+        case 2:
+            return nil
+        default:
+            return indexPath
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var text: String?
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 1:
+            let exercise = controller.objectAtIndexPath(indexPath) as? Exercise
+            text = exercise?.title
+            
+        default:
+            let category = controller.objectAtIndexPath(indexPath) as? Category
+            text = category?.category
+        }
+        
+        if text?.characters.count > 1 {
+            performSegueWithIdentifier("showDetails", sender: indexPath)
+        }
+    }
     
     //MARK: - NSFetchedResultsControllerDelegate
     
@@ -154,6 +192,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
+        
+        if !loadingView.hidden {
+            UIView.animateWithDuration(0.25, animations: { 
+                self.loadingView.alpha = 0
+                }, completion: { _ in
+                    self.loadingView.hidden = true
+                    self.activityIndicator.stopAnimating()
+            })
+        }
     }
 }
 
